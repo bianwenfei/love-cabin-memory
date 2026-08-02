@@ -1,5 +1,5 @@
 // ========== 配置项：修改成你自己的信息 ==========
-const LOVE_START_DATE = new Date('2020-05-20'); // 改成你的相恋开始日期
+const LOVE_START_DATE = new Date('2022-06-26'); // 改成你的相恋开始日期
 const COVER_IMG_URL = 'https://gimg2.baidu.com/image_search/src=http://wx2.sinaimg.cn/large/006EBt1Kly1h18nzq92jyj30u01hc7wh.jpg&refer=http://wx2.sinaimg.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1727850366&t=7b381202322f1459d7806878feef4301'; // 改成你们合照的地址
 
 // ========== 初始化 ==========
