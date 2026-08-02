@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我们的爱之小屋</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ff6b81">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- 顶部导航 -->
+  <nav class="navbar">
+    <h1 class="nav-title">💒 我们的爱之小屋</h1>
+    <button id="open-settings" class="settings-btn">⚙️ 设置</button>
+  </nav>
+
+  <!-- 设置弹窗：改名字/合照 -->
+  <div id="settings-modal" class="modal">
+    <div class="modal-content">
+      <h3>小屋设置</h3>
+      <div class="form-item">
+        <label>男方名字：</label>
+        <input type="text" id="name-boy" placeholder="输入男方名字">
+      </div>
+      <div class="form-item">
+        <label>女方名字：</label>
+        <input type="text" id="name-girl" placeholder="输入女方名字">
+      </div>
+      <div class="form-item">
+        <label>更换首页合照：</label>
+        <input type="file" id="cover-img" accept="image/*">
+        <div id="cover-preview"></div>
+      </div>
+      <div class="form-item">
+        <label>相恋开始日期：</label>
+        <input type="date" id="love-date" placeholder="选择相恋日期">
+      </div>
+      <div class="modal-btns">
+        <button id="cancel-settings" class="btn secondary">取消</button>
+        <button id="save-settings" class="btn primary">保存设置</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主界面（汇总所有功能） -->
+  <main id="home" class="main-page active-page">
+    <!-- 独立倒计时小窗口 -->
+    <div class="countdown-card">
+      <h2>❤️ 我们在一起已经</h2>
+      <div class="day-count"><span id="main-day-count">...</span> 天</div>
+      <p id="couple-names" class="couple-names">xxx ♥ xxx</p>
+    </div>
+
+    <!-- 每日任务打卡小窗口 -->
+    <div class="daily-card">
+      <div class="daily-header">
+        <h3>✅ 今日任务打卡</h3>
+        <a href="#daily" class="more-link">更多 &gt;</a>
+      </div>
+      <div id="today-task-list" class="today-tasks"></div>
+    </div>
+
+    <!-- 功能入口宫格 -->
+    <div class="function-grid">
+      <a href="#memory" class="func-card">
+        <div class="func-icon">📜</div>
+        <div class="func-name">记忆长廊</div>
+      </a>
+      <a href="#wish" class="func-card">
+        <div class="func-icon">📝</div>
+        <div class="func-name">愿望清单</div>
+      </a>
+      <a href="#recipe" class="func-card">
+        <div class="func-icon">🍳</div>
+        <div class="func-name">情侣菜谱</div>
+      </a>
+      <a href="#daily" class="func-card">
+        <div class="func-icon">📅</div>
+        <div class="func-name">每日打卡</div>
+      </a>
+    </div>
+
+    <img id="main-cover" class="main-cover" alt="我们的合照">
+  </main>
+
+  <!-- ========== 各个功能页 ========== -->
+  <!-- 记忆长廊 -->
+  <section id="memory" class="page">
+    <div class="page-header">
+      <button class="back-btn">&lt; 返回首页</button>
+      <h2>📜 记忆长廊</h2>
+      <button id="add-memory-btn" class="add-btn">+ 新增打卡</button>
+    </div>
+    <div id="memory-modal" class="modal">
+      <div class="modal-content">
+        <h3>写下今天的记忆</h3>
+        <textarea id="memory-text" placeholder="想说的话、今天的小故事..." rows="4"></textarea>
+        <div class="upload-area">
+          <label for="memory-img">添加照片：</label>
+          <input type="file" id="memory-img" accept="image/*">
+          <div id="img-preview"></div>
+        </div>
+        <div class="modal-btns">
+          <button id="cancel-memory" class="btn secondary">取消</button>
+          <button id="save-memory" class="btn primary">保存记忆</button>
+        </div>
+      </div>
+    </div>
+    <div id="memory-list" class="list-container">
+      <p class="empty-tip">还没有打卡记忆，快来写下我们的第一条吧～</p>
+    </div>
+  </section>
+
+  <!-- 愿望清单 -->
+  <section id="wish" class="page">
+    <div class="page-header">
+      <button class="back-btn">&lt; 返回首页</button>
+      <h2>📝 愿望清单</h2>
+      <button id="add-wish-btn" class="add-btn">+ 新增愿望</button>
+    </div>
+    <div id="wish-modal" class="modal">
+      <div class="modal-content">
+        <h3>添加新愿望</h3>
+        <input type="text" id="wish-text" placeholder="写下你想和TA一起完成的愿望">
+        <div class="modal-btns">
+          <button id="cancel-wish" class="btn secondary">取消</button>
+          <button id="save-wish" class="btn primary">保存</button>
+        </div>
+      </div>
+    </div>
+    <div id="wish-list" class="list-container">
+      <p class="empty-tip">还没有添加愿望，快来写下我们的第一个小目标吧～</p>
+    </div>
+  </section>
+
+  <!-- 新增：情侣菜谱 -->
+  <section id="recipe" class="page">
+    <div class="page-header">
+      <button class="back-btn">&lt; 返回首页</button>
+      <h2>🍳 我们的菜谱</h2>
+      <button id="add-recipe-btn" class="add-btn">+ 新增菜谱</button>
+    </div>
+    <div id="recipe-modal" class="modal">
+      <div class="modal-content">
+        <h3>添加新菜谱</h3>
+        <input type="text" id="recipe-name" placeholder="菜名">
+        <textarea id="recipe-step" placeholder="写下做法步骤..." rows="6"></textarea>
+        <div class="upload-area">
+          <label for="recipe-img">成品照片：</label>
+          <input type="file" id="recipe-img" accept="image/*">
+          <div id="recipe-preview"></div>
+        </div>
+        <div class="modal-btns">
+          <button id="cancel-recipe" class="btn secondary">取消</button>
+          <button id="save-recipe" class="btn primary">保存菜谱</button>
+        </div>
+      </div>
+    </div>
+    <div id="recipe-list" class="recipe-list">
+      <p class="empty-tip">还没有添加菜谱，快来收藏我们一起做过的菜吧～</p>
+    </div>
+  </section>
+
+  <!-- 新增：每日任务打卡 -->
+  <section id="daily" class="page">
+    <div class="page-header">
+      <button class="back-btn">&lt; 返回首页</button>
+      <h2>📅 每日任务打卡</h2>
+      <button id="add-task-btn" class="add-btn">+ 新增任务</button>
+    </div>
+    <div id="task-modal" class="modal">
+      <div class="modal-content">
+        <h3>添加每日任务</h3>
+        <input type="text" id="task-text" placeholder="任务内容，比如：一起散步">
+        <div class="modal-btns">
+          <button id="cancel-task" class="btn secondary">取消</button>
+          <button id="save-task" class="btn primary">保存</button>
+        </div>
+      </div>
+    </div>
+    <div class="daily-stat">
+      <p>连续打卡 <span id="continue-days">0</span> 天</p>
+    </div>
+    <div id="task-list" class="task-list"></div>
+  </section>
+
+  <footer class="footer">
+    <p>Made with ❤️ for us</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
