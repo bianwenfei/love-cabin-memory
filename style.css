@@ -27,10 +27,6 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-}
-.nav-container {
-  max-width: 1000px;
-  margin: 0 auto;
   padding: 1rem 20px;
   display: flex;
   justify-content: space-between;
@@ -38,33 +34,27 @@ body {
 }
 .nav-title {
   color: var(--primary-color);
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 600;
 }
-.nav-links .nav-link {
-  border: none;
+.settings-btn {
   background: transparent;
-  color: #666;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 0.4rem 0.8rem;
   border-radius: 20px;
-  transition: all 0.3s;
-  font-family: inherit;
-}
-.nav-links .nav-link.active, .nav-links .nav-link:hover {
-  background-color: var(--primary-color);
-  color: white;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
 /* 页面切换 */
-.page {
+.page, .main-page {
   display: none;
   max-width: 1000px;
-  margin: 2rem auto;
-  padding: 0 20px;
+  margin: 1.5rem auto;
+  padding: 0 15px;
 }
-.page.active-page {
+.active-page {
   display: block;
   animation: fadeIn 0.5s;
 }
@@ -73,61 +63,122 @@ body {
   to {opacity: 1; transform: translateY(0);}
 }
 
-/* 首页样式 */
-.home-card {
+/* 主界面样式 */
+.countdown-card {
   background: var(--card-bg);
   border-radius: 16px;
-  padding: 2rem;
-  box-shadow: var(--shadow);
+  padding: 2rem 1.5rem;
   text-align: center;
+  box-shadow: var(--shadow);
+  margin-bottom: 1.5rem;
 }
-.love-title {
-  font-size: 1.8rem;
-  color: var(--primary-color);
+.countdown-card h2 {
+  color: #666;
+  font-size: 1rem;
+  font-weight: 400;
   margin-bottom: 1rem;
 }
-#day-count {
+.day-count {
+  font-size: 3rem;
   color: var(--primary-color);
   font-weight: 600;
+  line-height: 1;
+  margin-bottom: 1rem;
 }
-.love-subtitle {
+.couple-names {
   color: #666;
-  margin-bottom: 2rem;
-}
-.couple-info {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-.person {
-  text-align: center;
-}
-.person .avatar {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
-}
-.split {
-  font-size: 2rem;
-  color: var(--primary-color);
-}
-.cover {
-  width: 100%;
-  max-height: 400px;
-  object-fit: cover;
-  border-radius: 12px;
+  font-size: 1.2rem;
 }
 
-/* 通用模块头 */
-.memory-header, .wish-header {
+.daily-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 1.5rem;
+}
+.daily-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 1rem;
+}
+.daily-header h3 {
+  color: var(--primary-color);
+  font-size: 1.1rem;
+}
+.more-link {
+  color: #999;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.today-tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.task-today-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.function-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
   margin-bottom: 1.5rem;
 }
-.memory-header h2, .wish-header h2 {
+.func-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  color: var(--text-color);
+  transition: transform 0.2s;
+}
+.func-card:hover {
+  transform: translateY(-3px);
+}
+.func-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+.func-name {
+  font-size: 1.1rem;
   color: var(--primary-color);
+  font-weight: 500;
+}
+.main-cover {
+  width: 100%;
+  max-height: 350px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+/* 子页面头部 */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.page-header h2 {
+  color: var(--primary-color);
+}
+.back-btn {
+  background: transparent;
+  border: none;
+  color: var(--primary-color);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  font-family: inherit;
 }
 .add-btn {
   background: var(--primary-color);
@@ -138,13 +189,9 @@ body {
   cursor: pointer;
   font-size: 1rem;
   font-family: inherit;
-  transition: transform 0.2s;
-}
-.add-btn:hover {
-  transform: scale(1.05);
 }
 
-/* 弹窗样式 */
+/* 弹窗通用样式 */
 .modal {
   display: none;
   position: fixed;
@@ -163,7 +210,7 @@ body {
 }
 .modal-content {
   background: var(--card-bg);
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 16px;
   width: 100%;
   max-width: 500px;
@@ -172,29 +219,33 @@ body {
   margin-bottom: 1rem;
   color: var(--primary-color);
 }
-textarea, input[type="text"] {
+.form-item {
+  margin-bottom: 1rem;
+}
+.form-item label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #666;
+}
+textarea, input[type="text"], input[type="date"], input[type="file"] {
   width: 100%;
   padding: 0.8rem;
   border: 1px solid #ffccd5;
   border-radius: 8px;
   font-family: inherit;
   font-size: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
-.upload-area {
-  margin-bottom: 1rem;
-}
-#img-preview {
-  margin-top: 1rem;
-}
-#img-preview img {
+#cover-preview img, #recipe-preview img, #img-preview img {
   max-width: 100%;
   border-radius: 8px;
+  margin-top: 0.5rem;
 }
 .modal-btns {
   display: flex;
   gap: 1rem;
   justify-content: flex-end;
+  margin-top: 1rem;
 }
 .btn {
   padding: 0.6rem 1.5rem;
@@ -213,12 +264,19 @@ textarea, input[type="text"] {
   color: #666;
 }
 
-/* 记忆长廊样式 */
-.memory-list {
+/* 列表通用 */
+.list-container {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
+.empty-tip {
+  text-align: center;
+  color: #999;
+  padding: 3rem 0;
+}
+
+/* 记忆卡片 */
 .memory-card {
   background: var(--card-bg);
   padding: 1.5rem;
@@ -240,15 +298,9 @@ textarea, input[type="text"] {
   max-height: 300px;
   object-fit: cover;
   border-radius: 8px;
+  margin-bottom: 0.5rem;
 }
-.empty-tip {
-  text-align: center;
-  color: #999;
-  padding: 3rem 0;
-}
-
 .delete-btn {
-  margin-top: 1rem;
   text-align: right;
 }
 .delete-btn button {
@@ -259,14 +311,10 @@ textarea, input[type="text"] {
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.8rem;
+  font-family: inherit;
 }
 
-/* 愿望清单样式 */
-.wish-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
+/* 愿望清单 */
 .wish-item {
   background: var(--card-bg);
   padding: 1rem 1.5rem;
@@ -293,10 +341,89 @@ textarea, input[type="text"] {
   flex: 1;
 }
 
+/* 菜谱样式 */
+.recipe-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+@media (max-width: 600px) {
+  .recipe-list {
+    grid-template-columns: 1fr;
+  }
+}
+.recipe-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.recipe-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+.recipe-info {
+  padding: 1rem;
+}
+.recipe-info h3 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+.recipe-step {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 每日任务 */
+.daily-stat {
+  background: var(--card-bg);
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow);
+  color: var(--primary-color);
+  font-size: 1.1rem;
+}
+.daily-stat span {
+  font-weight: 600;
+  font-size: 1.5rem;
+  padding: 0 0.3rem;
+}
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.task-item {
+  background: var(--card-bg);
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow);
+}
+.task-item.completed p {
+  text-decoration: line-through;
+  color: #999;
+}
+.task-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 /* 页脚 */
 .footer {
   text-align: center;
-  padding: 2rem 0;
+  padding: 1rem 0;
   color: #999;
   position: fixed;
   bottom: 0;
@@ -304,16 +431,12 @@ textarea, input[type="text"] {
   background: var(--bg-color);
 }
 
-/* 适配移动端 */
+/* 移动端适配 */
 @media (max-width: 600px) {
-  .nav-container {
-    flex-direction: column;
-    gap: 1rem;
+  .day-count {
+    font-size: 2.5rem;
   }
-  .couple-info {
-    gap: 1rem;
-  }
-  .home-card {
-    padding: 1.5rem 1rem;
+  .function-grid {
+    grid-template-columns: 1fr;
   }
 }
